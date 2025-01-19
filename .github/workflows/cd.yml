@@ -23,10 +23,10 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: subhadeepthandaka/leetcode-master:latest
+          tags: subhadeepthandaka/next-test:latest
 
       - name: Verify push
-        run: docker pull subhadeepthandaka/leetcode-master:latest
+        run: docker pull subhadeepthandaka/next-test:latest
 
       - name: Deploy to VPS
         uses: appleboy/ssh-action@master
@@ -36,9 +36,9 @@ jobs:
           key: ${{ secrets.SSH_KEY }}
           script: |
             echo "Connection successful!"
-            sudo docker pull subhadeepthandaka/test-next:latest
-            sudo docker stop test-next || true
-            sudo docker rm leetcode-master || true
+            sudo docker pull subhadeepthandaka/next-test:latest
+            sudo docker stop next-test || true
+            sudo docker rm next-test || true
             sudo docker run -d -p 3003  :3000 \
-              --name leetcode-master \
-              subhadeepthandaka/test-next:latest
+              --name next-test \
+              subhadeepthandaka/next-test:latest
