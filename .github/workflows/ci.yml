@@ -1,5 +1,4 @@
-name: CI pipeline
-
+name: CI pipeline 
 on:
   pull_request:
     branches:
